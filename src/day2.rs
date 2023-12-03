@@ -1,6 +1,6 @@
 use std::time::SystemTime;
 
-fn main() {
+pub fn main() {
     let time_start = SystemTime::now();
 
     let use_example = false;
@@ -8,9 +8,9 @@ fn main() {
     let input: &str;
 
     if !use_example {
-        input = include_str!("../input/day2.txt");
+        input = include_str!("../input/day2/day2.txt");
     } else {
-        input = include_str!("../input/day2_example.txt");
+        input = include_str!("../input/day2/day2_example.txt");
     }
 
     let mut game_sum: i32 = 0;
@@ -81,7 +81,7 @@ fn main() {
 
     let time_taken = SystemTime::now().duration_since(time_start).unwrap().as_micros();
 
-    println!("Part 1: {} \nPart 2: {} \n\nTook a total of {}ms to complete", game_sum, game_power_thing, time_taken);
+    println!("Day 2: Part 1: {}, Part 2: {}, Took a total of {}ms to complete", game_sum, game_power_thing, time_taken);
 }
 
 impl Cubes {
