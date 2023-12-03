@@ -5,12 +5,11 @@ fn main() {
 
     // Game 1: 1 green, 2 red, 6 blue; 4 red, 1 green, 3 blue; 7 blue, 5 green; 6 blue, 2 red, 1 green
     for line in input.lines() {
-        let mut cubes = Cubes { red: 0, green: 0, blue: 0 };
-
         // game string = Game 123, other_input = 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green
         let (game_string, other_input) = line.split_once(": ").unwrap();
         // game_number = 123
-        let (_, game_number) = game_string.split_once(" ").unwrap();
+        let (_, game_number_string) = game_string.split_once(" ").unwrap();
+        let game_number = game_number_string.parse::<i32>().unwrap();
 
         // 1 green, 2 red, 6 blue
         // 4 red, 1 green, 3 blue
@@ -18,8 +17,12 @@ fn main() {
         // 6 blue, 2 red, 1 green
         let rolls = other_input.split("; ");
 
+        let mut game_possible = true;
+
         // 1 green, 2 red, 6 blue
         for roll in rolls {
+            let mut cubes = Cubes { red: 0, green: 0, blue: 0 };
+
             // 1 green
             // 2 red
             // 6 blue
@@ -41,6 +44,14 @@ fn main() {
                     _ => (),
                 }
             }
+
+            if !cubes.is_possible() {
+                game_possible = false;
+            }
+        }
+
+        if game_possible {
+            game_sum += game_number
         }
     }
 
@@ -61,7 +72,6 @@ const CUBE_LIMITS: Cubes = Cubes {
     blue: 14
 };
 
-#[derive(Clone, Copy)]
 struct Cubes {
     red: i32,
     green: i32,
