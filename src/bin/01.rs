@@ -41,7 +41,6 @@ pub fn part_two(input: &str) -> Option<u32> {
         second_list.push(second_num);
     }
 
-
     for first in first_list {
         let mut second_count: u32 = 0;
 

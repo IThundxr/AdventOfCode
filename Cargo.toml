@@ -16,6 +16,7 @@ debug = 1
 
 [features]
 today = ["chrono"]
+dhat-heap = ["dhat"]
 test_lib = []
 
 [dependencies]
