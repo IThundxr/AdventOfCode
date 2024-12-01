@@ -16,13 +16,10 @@ pub fn part_one(input: &str) -> Option<u32> {
     second_list_sorted.sort();
 
     for i in 0..first_list_sorted.len() {
-        let first_number = first_list_sorted.get(i).unwrap();
-        let second_number = second_list_sorted.get(i).unwrap();
+        let first_number = first_list_sorted.get(i)?;
+        let second_number = second_list_sorted.get(i)?;
 
-        let biggest_number = first_number.max(second_number);
-        let smallest_number = first_number.min(second_number);
-
-        result += biggest_number - smallest_number;
+        result += first_number.abs_diff(*second_number);
     }
 
     Some(result)
