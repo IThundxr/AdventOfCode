@@ -1,4 +1,4 @@
-name: Update README ⭐ Progress
+name: Update README
 
 on: push
 
@@ -20,6 +20,9 @@ jobs:
           userId: ${{ secrets.AOC_USER_ID }}
           sessionCookie: ${{ secrets.AOC_SESSION }}
           year: ${{ env.AOC_YEAR }}
+
+      - name: Update benchmarks
+        run: cargo time --store
 
       - name: Commit changes
         uses: stefanzweifel/git-auto-commit-action@v5
