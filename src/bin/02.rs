@@ -1,9 +1,11 @@
 advent_of_code::solution!(2);
 
 pub fn part_one(input: &str) -> Option<usize> {
-    let result = input.lines()
+    let result = input
+        .lines()
         .filter(|line| {
-            let nums = line.split_ascii_whitespace()
+            let nums = line
+                .split_ascii_whitespace()
                 .map(|s| s.parse::<isize>().unwrap())
                 .collect::<Vec<_>>();
 
@@ -12,12 +14,15 @@ pub fn part_one(input: &str) -> Option<usize> {
             for i in 1..nums.len() {
                 let difference = nums[i] - nums[i - 1];
 
-                if difference.abs() < 1 || difference.abs() > 3 || (difference.signum() != first_difference.signum()) {
+                if difference.abs() < 1
+                    || difference.abs() > 3
+                    || (difference.signum() != first_difference.signum())
+                {
                     return false;
                 }
             }
 
-            return true;
+            true
         })
         .count();
 
