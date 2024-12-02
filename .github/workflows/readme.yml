@@ -26,6 +26,7 @@ jobs:
 
       - name: Update Benchmarks
         run: |
+          echo "ADVENT_OF_CODE_SESSION=${{ secrets.AOC_SESSION }}" >> $GITHUB_ENV
           cargo install aoc-cli
           for i in $(seq -w 1 25); do
             cargo download $i
