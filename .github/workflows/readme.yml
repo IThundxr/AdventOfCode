@@ -29,7 +29,7 @@ jobs:
           echo ${{ secrets.AOC_SESSION }} >> ~/.adventofcode.session
           cargo install aoc-cli
           for i in $(seq -w 1 25); do
-            cargo download $i
+            cargo download $i || true
           done
           cargo time --all --store
 
