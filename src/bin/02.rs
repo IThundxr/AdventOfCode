@@ -29,7 +29,7 @@ pub fn part_one(input: &str) -> Option<usize> {
     Some(result)
 }
 
-pub fn part_two(input: &str) -> Option<u32> {
+pub fn part_two(_input: &str) -> Option<u32> {
     None
 }
 
