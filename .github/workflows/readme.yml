@@ -14,6 +14,19 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
+      - name: Set up Cargo Cache
+        uses: actions/cache@v4
+        continue-on-error: false
+        with:
+          path: |
+            ~/.cargo/bin/
+            ~/.cargo/registry/index/
+            ~/.cargo/registry/cache/
+            ~/.cargo/git/db/
+            target/
+          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+          restore-keys: ${{ runner.os }}-cargo-
+
       - name: Extract AOC_YEAR from config.toml
         run: echo "AOC_YEAR=$(grep 'AOC_YEAR' .cargo/config.toml | sed -E 's/.*= *\"([0-9]+)\".*/\1/')" >> $GITHUB_ENV
 
