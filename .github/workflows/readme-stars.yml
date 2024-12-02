@@ -1,9 +1,6 @@
-name: Update README
+name: Update README ⭐ Progress
 
-on:
-  workflow_dispatch:
-  schedule:
-    - cron: "15 12 * * *"
+on: push
 
 jobs:
   update-readme:
@@ -23,15 +20,6 @@ jobs:
           userId: ${{ secrets.AOC_USER_ID }}
           sessionCookie: ${{ secrets.AOC_SESSION }}
           year: ${{ env.AOC_YEAR }}
-
-      - name: Update Benchmarks
-        run: |
-          echo ${{ secrets.AOC_SESSION }} >> ~/.adventofcode.session
-          cargo install aoc-cli
-          for i in $(seq -w 1 25); do
-            cargo download $i || true
-          done
-          cargo time --all --store
 
       - name: Commit changes
         uses: stefanzweifel/git-auto-commit-action@v5
