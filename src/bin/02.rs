@@ -51,6 +51,8 @@ pub fn part_two(input: &str) -> Option<usize> {
                         return false;
                     }
                 }
+            } else {
+                return false;
             }
 
             true
