@@ -26,6 +26,7 @@ jobs:
 
       - name: Update Benchmarks
         run: |
+          cargo install aoc-cli
           for i in $(seq -w 1 25); do
             cargo download $i
           done
