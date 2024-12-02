@@ -10,11 +10,11 @@ pub fn is_safe(nums: &Vec<isize>) -> bool {
             || difference.abs() > 3
             || (difference.signum() != first_difference.signum())
         {
-            return true;
+            return false;
         }
     }
 
-    false
+    true
 }
 
 pub fn part_one(input: &str) -> Option<usize> {
@@ -26,7 +26,7 @@ pub fn part_one(input: &str) -> Option<usize> {
                 .map(|s| s.parse::<isize>().unwrap())
                 .collect::<Vec<_>>();
 
-            !is_safe(&nums)
+            is_safe(&nums)
         })
         .count();
 
@@ -42,20 +42,20 @@ pub fn part_two(input: &str) -> Option<usize> {
                 .map(|s| s.parse::<isize>().unwrap())
                 .collect::<Vec<_>>();
 
-            if !is_safe(&nums) {
+            if is_safe(&nums) {
                 for i in 0..nums.len() {
                     let mut new_nums = nums.clone();
                     new_nums.remove(i);
 
                     if is_safe(&new_nums) {
-                        return false;
+                        return true;
                     }
                 }
             } else {
-                return false;
+                return true;
             }
 
-            true
+            false
         })
         .count();
 
