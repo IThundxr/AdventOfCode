@@ -14,8 +14,8 @@
 
 | Day | Part 1 | Part 2 |
 | :---: | :---: | :---:  |
-| [Day 1](./src/bin/01.rs) | `72.8µs` | `116.0µs` |
-| [Day 2](./src/bin/02.rs) | `175.3µs` | `-` |
+| [Day 1](./src/bin/01.rs) | `75.4µs` | `117.6µs` |
+| [Day 2](./src/bin/02.rs) | `136.3µs` | `-` |
 
-**Total: 0.36ms**
+**Total: 0.33ms**
 <!--- benchmarking table --->
