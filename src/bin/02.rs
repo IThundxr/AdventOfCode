@@ -1,6 +1,6 @@
 advent_of_code::solution!(2);
 
-pub fn is_safe(nums: &Vec<isize>) -> bool {
+pub fn is_safe(nums: &[isize]) -> bool {
     let first_difference = nums[1] - nums[0];
 
     for i in 1..nums.len() {
@@ -42,7 +42,7 @@ pub fn part_two(input: &str) -> Option<usize> {
                 .map(|s| s.parse::<isize>().unwrap())
                 .collect::<Vec<_>>();
 
-            if is_safe(&nums) {
+            if !is_safe(&nums) {
                 for i in 0..nums.len() {
                     let mut new_nums = nums.clone();
                     new_nums.remove(i);
