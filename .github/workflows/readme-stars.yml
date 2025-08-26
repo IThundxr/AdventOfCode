@@ -1,0 +1,27 @@
+name: Update README ⭐ Progress
+
+on: push
+
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Extract AOC_YEAR from config.toml
+        run: echo "AOC_YEAR=$(grep 'AOC_YEAR' .cargo/config.toml | sed -E 's/.*= *\"([0-9]+)\".*/\1/')" >> $GITHUB_ENV
+
+      - name: Update star count
+        uses: k2bd/advent-readme-stars@v1
+        with:
+          userId: ${{ secrets.AOC_USER_ID }}
+          sessionCookie: ${{ secrets.AOC_SESSION }}
+          year: ${{ env.AOC_YEAR }}
+
+      - name: Commit changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Update README.md"
