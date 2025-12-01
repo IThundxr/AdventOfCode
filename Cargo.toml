@@ -17,6 +17,7 @@ debug = 1
 [features]
 dhat-heap = ["dhat"]
 today = ["chrono"]
+test_lib = []
 
 [dependencies]
 # Template dependencies
