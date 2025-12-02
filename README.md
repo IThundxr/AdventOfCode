@@ -9,4 +9,11 @@
 <!--- advent_readme_stars table --->
 
 <!--- benchmarking table --->
+## Benchmarks
+
+| Day | Part 1 | Part 2 |
+| :---: | :---: | :---:  |
+| [Day 1](./src/bin/01.rs) | `63.9µs` | `1.9ms` |
+
+**Total: 1.96ms**
 <!--- benchmarking table --->
