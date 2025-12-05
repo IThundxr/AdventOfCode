@@ -20,11 +20,7 @@ pub fn part_one(input: &str) -> Option<u64> {
     for y in 0..grid.height {
         for x in 0..grid.width {
             if grid[(x, y)] == b'@' {
-                let adjacent_rolls = ADJACENTS
-                    .iter()
-                    .map(|(x_m, y_m)| (x_m + x as i32, y_m + y as i32))
-                    .filter(|&next| grid.contains(next) && grid[next] == b'@')
-                    .count();
+                let adjacent_rolls = get_adjacent_rolls(x, y, &grid);
 
                 if adjacent_rolls < 4 {
                     accessible_rolls += 1;
@@ -47,11 +43,7 @@ pub fn part_two(input: &str) -> Option<u64> {
         for y in 0..grid.height {
             for x in 0..grid.width {
                 if grid[(x, y)] == b'@' {
-                    let adjacent_rolls = ADJACENTS
-                        .iter()
-                        .map(|(x_m, y_m)| (x_m + x, y_m + y))
-                        .filter(|&next| grid.contains(next) && grid[next] == b'@')
-                        .count();
+                    let adjacent_rolls = get_adjacent_rolls(x, y, &grid);
 
                     if adjacent_rolls < 4 {
                         rolls_removed += 1;
@@ -66,6 +58,14 @@ pub fn part_two(input: &str) -> Option<u64> {
     }
 
     Some(removed_rolls_total)
+}
+
+fn get_adjacent_rolls(x: i32, y: i32, grid: &Grid<u8>) -> usize {
+    ADJACENTS
+        .iter()
+        .map(|(x_m, y_m)| (x_m + x, y_m + y))
+        .filter(|&next| grid.contains(next) && grid[next] == b'@')
+        .count()
 }
 
 #[cfg(test)]

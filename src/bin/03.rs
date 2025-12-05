@@ -12,9 +12,7 @@ pub fn part_one(input: &str) -> Option<u64> {
 
         let mut first_index = 0;
         let (mut first_val, mut second_val) = (0, 0);
-        for i in 0..(digits.len() - 1) {
-            let digit = digits[i];
-
+        for (i, &digit) in digits.iter().enumerate().take(digits.len() - 1) {
             if digit > first_val {
                 first_index = i + 1;
                 first_val = digit;
@@ -22,9 +20,7 @@ pub fn part_one(input: &str) -> Option<u64> {
         }
 
         digits.reverse();
-        for i in 0..(digits.len() - first_index) {
-            let digit = digits[i];
-
+        for &digit in &digits[..digits.len() - first_index] {
             if digit > second_val {
                 second_val = digit;
             }
@@ -49,9 +45,9 @@ pub fn part_two(input: &str) -> Option<u64> {
         for i in (0..=digits.len() - 13).rev() {
             let mut battery = digits[i];
 
-            for o in 0..on_batteries.len() {
-                if battery >= on_batteries[o] {
-                    std::mem::swap(&mut on_batteries[o], &mut battery);
+            for ob in on_batteries.iter_mut() {
+                if battery >= *ob {
+                    std::mem::swap(ob, &mut battery);
                 } else {
                     break;
                 }
