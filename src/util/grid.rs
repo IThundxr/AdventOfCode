@@ -23,7 +23,15 @@ impl Grid<u8> {
     }
 }
 
-impl<T> Grid<T> {
+impl<T: Clone> Grid<T> {
+    pub fn new(width: i32, height: i32, default: T) -> Self {
+        Grid {
+            width,
+            height,
+            data: vec![default; (width * height) as usize],
+        }
+    }
+
     pub fn contains(&self, (x, y): (i32, i32)) -> bool {
         x >= 0 && x < self.width && y >= 0 && y < self.height
     }
