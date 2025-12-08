@@ -35,6 +35,34 @@ impl<T: Clone> Grid<T> {
     pub fn contains(&self, (x, y): (i32, i32)) -> bool {
         x >= 0 && x < self.width && y >= 0 && y < self.height
     }
+
+    pub fn find_first(&self, t: T) -> Option<(i32, i32)>
+    where
+        T: PartialEq,
+    {
+        self.data.iter().position(|v| *v == t).map(|idx| {
+            let idx = idx as i32;
+            let x = idx % self.width;
+            let y = idx / self.width;
+            (x, y)
+        })
+    }
+
+    pub fn find_all(&self, t: T) -> Vec<(i32, i32)>
+    where
+        T: PartialEq,
+    {
+        self.data
+            .iter()
+            .positions(|v| *v == t)
+            .map(|idx| {
+                let idx = idx as i32;
+                let x = idx % self.width;
+                let y = idx / self.width;
+                (x, y)
+            })
+            .collect_vec()
+    }
 }
 
 impl<T> Index<(i32, i32)> for Grid<T> {

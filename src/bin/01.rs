@@ -12,7 +12,7 @@ pub fn part_one(input: &str) -> Option<u64> {
         match direction {
             "L" => current_num = (current_num - turn_amount).rem_euclid(100),
             "R" => current_num = (current_num + turn_amount).rem_euclid(100),
-            _ => return None, // Impossible to hit
+            _ => unreachable!(),
         };
 
         if current_num == 0 {
